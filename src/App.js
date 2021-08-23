@@ -15,7 +15,7 @@ import {
 class App extends React.Component {
 
   render() {
-    const {isAuthenticated } = this.props.auth0;
+    const {user,isAuthenticated } = this.props.auth0;
     console.log('app', this.props);
     return (
       <>
@@ -27,7 +27,7 @@ class App extends React.Component {
               {(isAuthenticated ? <BestBooks/>: <Login/>)}
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
-            <Profile/>
+            <Profile user={this.user}/>
           </Switch>
           <Footer />
         </Router>
