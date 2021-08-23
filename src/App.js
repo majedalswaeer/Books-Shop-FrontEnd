@@ -27,7 +27,7 @@ class App extends React.Component {
               {(isAuthenticated ? <BestBooks/>: <Login/>)}
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
-            <Profile user={this.user}/>
+            <Profile/>
           </Switch>
           <Footer />
         </Router>
