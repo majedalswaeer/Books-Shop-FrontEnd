@@ -63,3 +63,33 @@ Clone this repo to your own account with the green "Use this template" button. T
 ### Finish time: 3pm
 
 ### Actual time needed to complete:2 hours
+
+*******************************************************************
+
+# Mongo
+
+**Author**: Majed AlSwaeer, Deema Ziqlam, Shmaekh Quran
+
+### Overview
+* we made an application with auth0 that contains books that we added to the database using mongo then rendering it into cards
+
+### Getting Started
+* just adding his info to log in
+
+### Architecture
+* React, js , css,auth0,Mongo were used
+
+### Change Log
+* 24-08-2021 1:59am - Application now has full functionality 
+
+
+### Name of feature: Mongo
+
+### Estimate of time needed to complete: 3 hours
+
+### Start time: 11pm
+
+### Finish time: 2am
+
+### Actual time needed to complete: 3 hours
+
