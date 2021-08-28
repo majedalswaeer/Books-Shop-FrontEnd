@@ -93,3 +93,21 @@ Clone this repo to your own account with the green "Use this template" button. T
 
 ### Actual time needed to complete: 3 hours
 
+******************************
+# post update and delete
+**Author**: Majed AlSwaeer
+    
+## Overview
+we made an application with auth0 that contains books that we added to the database using mongo then rendering it into cards that has 2 button to update and delete the info
+
+## Getting Started
+just adding his info to log in 
+
+## Architecture
+React, js , css,auth0,Mongo were used
+
+## Change Log
+28-08-2021 1:59pm - Application now has full functionality 
+
+
+
