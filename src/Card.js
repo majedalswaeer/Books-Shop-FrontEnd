@@ -25,6 +25,7 @@ class Cardclass extends React.Component {
                   </Card.Text>
                   {/* //if we are passing prop we cant call it directly from onClick we have to put a function */}
                   <Button onClick={()=>{this.props.deleteBook(this.props.id)}} variant="primary" type="submit">Delete Item!</Button>
+                  <Button onClick={()=>{this.props.updateBook(this.props.id)}} variant="primary" type="submit">Update Item!</Button>
 
                 </Card.Body>
               </Card>

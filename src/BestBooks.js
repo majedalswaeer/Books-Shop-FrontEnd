@@ -5,6 +5,7 @@ import './BestBooks.css';
 import Cardclass from './Card';
 import Formclass from './Form';
 import Jumbotronclass from './Jumbotron'
+import UpdateModal from './UpdateModal'
 const axios = require('axios');
 require('dotenv').config();
 
@@ -18,6 +19,8 @@ class MyFavoriteBooks extends React.Component {
     this.state = {
       books: [],
       showForm: false,
+      updatedBookState: {},
+      showUpdateModal: false,
     }
   }
 
@@ -75,33 +78,80 @@ class MyFavoriteBooks extends React.Component {
     })
   }
 
+  updateBook = async (bookID) => {
+    await this.setState({
+      showUpdateModal: false
+    })
+
+    let updatedBook = this.state.books.find(book => {
+      return book._id === bookID;
+    })
+    // console.log(updatedBook);
+    await this.setState({
+      updatedBookState: updatedBook,
+      showUpdateModal: true
+    })
+  }
+
+  updateBookFromDataBase = async (e) => {
+    e.preventDefault();
+    const { user } = this.props.auth0;
+    let updatedBookInfo = {
+      title: e.target.title.value,
+      description: e.target.description.value,
+      status: e.target.status.value,
+      email:user.email
+    }
+    let bookID = this.state.updatedBookState._id
+    let updateReq = await axios.put(`${process.env.REACT_APP_SERVER}/putBookFunc/${bookID}`, updatedBookInfo);
+    this.setState({
+      books: updateReq.data
+    })
+
+  }
+
+  // handleClose=()=>{
+  //   this.setState({
+  //     showUpdateModal: false
+  //   })
+  // }
+
+
   render() {
 
     return (
       <>
         <Jumbotronclass
-        showForm={this.showForm}
+          showForm={this.showForm}
         />
-          
-          {this.state.showForm && (
-            <Formclass 
-            postBookFunc={this.postBookFunc} 
-            />
-          )}
 
-          {this.state.books.map((element, key) => {
-            return (
-              <Cardclass
-                key={key}
-                title={element.title}
-                description={element.description}
-                status={element.status}
-                email={element.email}
-                deleteBook={this.deleteBook}
-                id={element._id} />
-            );
-          })
-          }
+        {this.state.showForm && (
+          <Formclass
+            postBookFunc={this.postBookFunc}
+          />
+        )}
+
+        {this.state.books.map((element, key) => {
+          return (
+            <Cardclass
+              key={key}
+              title={element.title}
+              description={element.description}
+              status={element.status}
+              email={element.email}
+              deleteBook={this.deleteBook}
+              id={element._id}
+              updateBook={this.updateBook} />
+          );
+        })
+        }
+
+        {this.state.showUpdateModal &&
+          <UpdateModal
+            bookDetalis={this.state.updatedBookState}
+            updateBookFromDataBase={this.updateBookFromDataBase}
+
+          />}
       </>
     )
   }
